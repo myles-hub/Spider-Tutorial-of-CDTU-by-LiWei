@@ -1,5 +1,6 @@
 ---
 typora-root-url: images
+
 ---
 
 # python 爬虫
@@ -84,6 +85,8 @@ typora-root-url: images
 
 <img src="/image-20200829221956201.png" alt="image-20200829221956201"  />
 
+提示：本章节需要有HTML、CSS、JS 的基础知识。
+
 #### 3.1.1 页面分析
 
 ​        学会使用“开发者调试工具”进行web网页的`Elements` 和 `network` 两个常用模块来进行数据位置定位和请求过程的分析。
@@ -135,8 +138,6 @@ import re
 from bs4 import BeautifulSoup
 ```
 
-
-
 - （2）什么是包（package）
 
 ​        package 包的存在是为了避免 **<u>“模块名”</u>** 的冲突，从而python引入了目录结构来组织模块的方法。也就是说包的实质概念就是 **“<u>存放模块的文件夹</u>”**。
@@ -154,10 +155,11 @@ import re
 import sys,os
 
 # 2）第三方模块导入（首先需要下载安装，然后才能导入：pip install bs4）
-from bs4 import BeautifulSoup
+import bs4 # 导入bs4第三方包
+from bs4 import BeautifulSoup #导入第三方bs4包中的 BeautifulSoup模块
 
 # 3）自定义模块导入（新建一个文件夹作为包:package_test，然后在此文件夹中创建新的test1.py文件作为模块）
-from package_test import test1
+from package_test import test1	# 
 
 ```
 
@@ -169,10 +171,119 @@ from package_test import test1
 
 ​         通过HTTP库向目标站点发起请求，请求可以包含额外的header等信息，如果服务器能正常响应，会得到一个Response，便是所要获取的页面内容。
 
+#### 3.2.1 urllib 网页下载实例
+
+```python
+import urllib.request
+
+# 1. 准备请求数据
+url = "https://movie.douban.com/top250"
+headers = {"user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36"}
+
+# 2. 封装请求对象
+request = urllib.request.Request(url, headers=headers)
+
+# 3. 发起请求，获取响应对象
+response = urllib.request.urlopen(request)
+
+# 4. 读取源码，并解码
+html_page = response.read().decode()
+
+print(html_page)
+```
+
+
+
 ### 3.3 解析内容
 
-​        得到的内容可能是HTML、json等格式，可以用页面解析库、正则表达式等
-进行解析。
+​        得到的内容可能是HTML、json等格式，可以用页面解析库、正则表达式等进行解析提取。
+
+#### 3.3.1 BeutifulSoup解析
+
+BeautifulSoup 是一个第三方的文档树对象解析模块，其可以帮助我们将html或xml文件对象解析为一个python环境下可操作的文档树对象，从而方便我们进行文档内容 <u>**“遍历”**</u> 和 <u>**“查找”**</u>。
+
+##### 3.3.1.1 标签遍历
+
+**<u>标签遍历方法，其主要作用就是对第一个匹配标签和标签中的特定内容进行提取。</u>**当然其实可以对第一个匹配特定标签的上下、左右、兄弟、子孙标签节点内容进行提取（但是，实际使用很少）。
+
+```python
+soup.tag
+
+soup.tag.string
+soup.a.string
+
+soup.tag.contents
+soup.head.contents
+
+soup.tag.name
+soup.tag.attrs
+```
+
+**<u>使用缺点：</u>** 只能提取到第1个标签，若果要求提取所有某个标签，或者匹配第2个，第3个，操作起来就非常的麻烦，需要一层一层的去遍历。（后面的“搜索查找”的方式就弥补了遍历的不足，2者可以结合的使用。）
+
+##### 3.3.1.2 标签搜索
+
+###### （1）标签查找法
+
+​       标签查找法是BeautifuSoup模块最常用的标签提取方法，本方法即通过  **“soup.find_all(name, attrs, recusive, text, kwargs**)”**指定查找的条件进行整个文档树的搜索查找，提取出符合条件的标签。
+
+> - 1. **name 查找**
+>
+> - （i）soup.find_all(‘a')
+> - （ii）soup.find_all(re.compile('a'))
+> - （iii）soup.find_all(['a', 'b'])
+>
+> - 2. **attrs 查找**
+>   
+>   - soup.find_all(id="link")
+>   - soup.find_all(id=True)
+> - 3. **text 查找**
+>   
+>   - （i）soup.find_all(text="Elsie")
+>   - （ii）sopp.find_all(text=["Elsie","Lacie","Tillie"])
+>   - （iii）soup.find_all(text=re.compile(".+e"))
+> - 4. **limit 限制条件补充**
+>   
+>   - soup.find_all("a", limit=2)
+
+
+
+###### （2）选择器查找法
+
+选择器查找法，即通过 **<u>"soup.select()"</u>** 方法指定相应的匹配查找条件对需要查询提取的 **<u>“标签”</u>** 或 **<u>“内容”</u>** 进行定位提取。
+
+> - 1. 通过标签名查找
+>
+>   - soup.select('a')
+>
+> - 通过类名查找
+>
+>   - soup.select(".story")
+>
+> - 通过id查找
+>
+>   - soup.select(#link1)
+>
+> - 通过属性查找
+>
+>   - soup.select("a[cleass='sister']")
+>
+> - **通过标签路径查找（最常用）**
+>
+>   - soup.select("head > title")
+>
+> - 通过兄弟标签查找字字符串内容
+>
+>   - tag_lst = soup.select(".title~ .story")
+>   - tag_lst[0].get_text()
+
+
+
+
+
+#### 3.3.2 正则匹配
+
+
 
 ### 3.4 保存数据
 
