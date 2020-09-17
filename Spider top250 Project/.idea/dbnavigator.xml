@@ -25,27 +25,27 @@
     <show-object-properties value="false" />
     <loaded-nodes>
       <connection connection-id="a6368419-3249-4b73-a59c-0723e3129d8f">
-        <schema name="main" object-types="table, view" />
+        <schema name="main" object-types="view, table" />
       </connection>
       <connection connection-id="eeb54860-f682-4fed-938e-fb422bcc236b">
-        <schema name="main" object-types="table, dataset trigger, constraint, view, index, column" />
+        <schema name="main" object-types="view, table" />
       </connection>
       <connection connection-id="cb88d2fa-8002-45cf-a2a8-b4745b90904b">
-        <schema name="main" object-types="table, dataset trigger, constraint, view, index, column" />
+        <schema name="main" object-types="view, table" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="a6368419-3249-4b73-a59c-0723e3129d8f">
-      <console name="Connection" type="STANDARD" schema="main" session="Main"><![CDATA[-- drop table company;
-select * from movie;]]></console>
+      <console name="Connection" type="STANDARD" schema="main" session="Main">-- drop table company;
+select * from movie;</console>
     </connection>
     <connection id="eeb54860-f682-4fed-938e-fb422bcc236b">
-      <console name="top250" type="STANDARD" schema="main" session="Main"><![CDATA[select * from movie;
-select * from movie where id > 200;]]></console>
+      <console name="top250" type="STANDARD" schema="main" session="Main">select * from movie;
+select * from movie where id &gt; 200;</console>
     </connection>
     <connection id="cb88d2fa-8002-45cf-a2a8-b4745b90904b">
-      <console name="Connection 2" type="STANDARD" schema="main" session="Main"><![CDATA[select * from movie;]]></console>
+      <console name="Connection 2" type="STANDARD" schema="main" session="Main">select * from movie;</console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

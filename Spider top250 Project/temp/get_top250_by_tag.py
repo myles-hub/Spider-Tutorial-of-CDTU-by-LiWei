@@ -84,10 +84,16 @@ def save_data(data_lst):
         worksheet.write(0, i, column[i])
 
     # 将数据写入excel
-    for i in range(0, len(data_lst)):
-        data = data_lst[i]
-        for j in range(0, 8):
-            worksheet.write(i+1, j, data[j])
+    # for i in range(0, len(data_lst)):
+    #     data = data_lst[i]
+    #     for j in range(0, 8):
+    #         worksheet.write(i+1, j, data[j])
+
+    i = 1
+    for data in data_lst:
+        for j in range(len(data)):
+            worksheet.write(i, j, data[j])
+        i += 1
 
     # 保存都文件
     workbook.save(r"C:\Users\myles\Desktop\top25_of_movie.xls")
