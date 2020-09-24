@@ -24,51 +24,27 @@
     <autoscroll-from-editor value="true" />
     <show-object-properties value="false" />
     <loaded-nodes>
-      <connection connection-id="a6368419-3249-4b73-a59c-0723e3129d8f">
-        <schema name="main" object-types="view, table" />
-      </connection>
-      <connection connection-id="eeb54860-f682-4fed-938e-fb422bcc236b">
-        <schema name="main" object-types="view, table" />
-      </connection>
-      <connection connection-id="cb88d2fa-8002-45cf-a2a8-b4745b90904b">
-        <schema name="main" object-types="view, table" />
+      <connection connection-id="cd3b3fd5-60d9-4b44-badd-46e1cbbdcbfe">
+        <schema name="main" object-types="view, index, dataset trigger, table, constraint, column" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="a6368419-3249-4b73-a59c-0723e3129d8f">
-      <console name="Connection" type="STANDARD" schema="main" session="Main">-- drop table company;
-select * from movie;</console>
-    </connection>
-    <connection id="eeb54860-f682-4fed-938e-fb422bcc236b">
-      <console name="top250" type="STANDARD" schema="main" session="Main">select * from movie;
-select * from movie where id &gt; 200;</console>
-    </connection>
-    <connection id="cb88d2fa-8002-45cf-a2a8-b4745b90904b">
-      <console name="Connection 2" type="STANDARD" schema="main" session="Main">select * from movie;</console>
+    <connection id="cd3b3fd5-60d9-4b44-badd-46e1cbbdcbfe">
+      <console name="db_9" type="STANDARD" schema="main" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="cd3b3fd5-60d9-4b44-badd-46e1cbbdcbfe" object-ref="schemas/main/tables/MOVIE" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="a6368419-3249-4b73-a59c-0723e3129d8f" />
-    <connection id="eeb54860-f682-4fed-938e-fb422bcc236b" />
-    <connection id="cb88d2fa-8002-45cf-a2a8-b4745b90904b" />
+    <connection id="cd3b3fd5-60d9-4b44-badd-46e1cbbdcbfe" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="cb88d2fa-8002-45cf-a2a8-b4745b90904b" dataset="main.MOVIE" active-filter-id="7eb8aad2-1664-41f2-a143-36d3540e1690">
-      <filter id="7eb8aad2-1664-41f2-a143-36d3540e1690" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
-        <condition column="ID" operator="=" value="" active="true" />
-      </filter>
-    </filter-actions>
-    <filter-actions connection-id="eeb54860-f682-4fed-938e-fb422bcc236b" dataset="main.MOVIE" active-filter-id="061d56a0-1b87-40bb-a2f0-aa1174e599bb">
-      <filter id="061d56a0-1b87-40bb-a2f0-aa1174e599bb" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
-        <condition column="ID" operator="=" value="" active="true" />
-      </filter>
-    </filter-actions>
-    <filter-actions connection-id="a6368419-3249-4b73-a59c-0723e3129d8f" dataset="main.company" active-filter-id="EMPTY_FILTER">
-      <filter id="019d9cd9-8344-48c8-aca4-a184fb1e5a1a" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+    <filter-actions connection-id="cd3b3fd5-60d9-4b44-badd-46e1cbbdcbfe" dataset="main.MOVIE" active-filter-id="81d813df-56d4-40a7-8931-6dc005dbac09">
+      <filter id="81d813df-56d4-40a7-8931-6dc005dbac09" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="ID" operator="=" value="" active="true" />
       </filter>
     </filter-actions>
@@ -98,95 +74,9 @@ select * from movie where id &gt; 200;</console>
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="a6368419-3249-4b73-a59c-0723e3129d8f" active="true">
+      <connection id="cd3b3fd5-60d9-4b44-badd-46e1cbbdcbfe" active="true">
         <database>
-          <name value="Connection" />
-          <description value="demo_01" />
-          <database-type value="SQLITE" />
-          <config-type value="BASIC" />
-          <database-version value="3.3" />
-          <driver-source value="BUILTIN" />
-          <driver-library value="" />
-          <driver value="" />
-          <url-type value="FILE" />
-          <host value="localhost" />
-          <port value="1234" />
-          <database value="database" />
-          <files>
-            <file path="C:\Users\myles\Desktop\Python 学习\豆瓣电影250爬取\Spider top250 Project\temp\test.db" schema="main" />
-          </files>
-          <type value="NONE" />
-          <user value="" />
-          <deprecated-pwd value="" />
-        </database>
-        <properties>
-          <auto-commit value="true" />
-        </properties>
-        <ssh-settings>
-          <active value="false" />
-          <proxy-host value="" />
-          <proxy-port value="22" />
-          <proxy-user value="" />
-          <deprecated-proxy-pwd value="" />
-          <auth-type value="PASSWORD" />
-          <key-file value="" />
-          <key-passphrase value="" />
-        </ssh-settings>
-        <ssl-settings>
-          <active value="false" />
-          <certificate-authority-file value="" />
-          <client-certificate-file value="" />
-          <client-key-file value="" />
-        </ssl-settings>
-        <details>
-          <charset value="UTF-8" />
-          <session-management value="true" />
-          <ddl-file-binding value="true" />
-          <database-logging value="false" />
-          <connect-automatically value="true" />
-          <restore-workspace value="true" />
-          <restore-workspace-deep value="true" />
-          <environment-type value="default" />
-          <idle-time-to-disconnect value="30" />
-          <idle-time-to-disconnect-pool value="5" />
-          <credential-expiry-time value="10" />
-          <max-connection-pool-size value="7" />
-          <alternative-statement-delimiter value="" />
-        </details>
-        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false">
-          <object-type-filter use-master-settings="true">
-            <object-type name="SCHEMA" enabled="true" />
-            <object-type name="USER" enabled="true" />
-            <object-type name="ROLE" enabled="true" />
-            <object-type name="PRIVILEGE" enabled="true" />
-            <object-type name="CHARSET" enabled="true" />
-            <object-type name="TABLE" enabled="true" />
-            <object-type name="VIEW" enabled="true" />
-            <object-type name="MATERIALIZED_VIEW" enabled="true" />
-            <object-type name="NESTED_TABLE" enabled="true" />
-            <object-type name="COLUMN" enabled="true" />
-            <object-type name="INDEX" enabled="true" />
-            <object-type name="CONSTRAINT" enabled="true" />
-            <object-type name="DATASET_TRIGGER" enabled="true" />
-            <object-type name="DATABASE_TRIGGER" enabled="true" />
-            <object-type name="SYNONYM" enabled="true" />
-            <object-type name="SEQUENCE" enabled="true" />
-            <object-type name="PROCEDURE" enabled="true" />
-            <object-type name="FUNCTION" enabled="true" />
-            <object-type name="PACKAGE" enabled="true" />
-            <object-type name="TYPE" enabled="true" />
-            <object-type name="TYPE_ATTRIBUTE" enabled="true" />
-            <object-type name="ARGUMENT" enabled="true" />
-            <object-type name="DIMENSION" enabled="true" />
-            <object-type name="CLUSTER" enabled="true" />
-            <object-type name="DBLINK" enabled="true" />
-          </object-type-filter>
-          <object-name-filters />
-        </object-filters>
-      </connection>
-      <connection id="eeb54860-f682-4fed-938e-fb422bcc236b" active="true">
-        <database>
-          <name value="top250" />
+          <name value="db_9" />
           <description value="" />
           <database-type value="SQLITE" />
           <config-type value="BASIC" />
@@ -199,93 +89,7 @@ select * from movie where id &gt; 200;</console>
           <port value="1234" />
           <database value="database" />
           <files>
-            <file path="C:\Users\myles\Desktop\Python 学习\豆瓣电影250爬取\Spider top250 Project\temp\top250_8.db" schema="main" />
-          </files>
-          <type value="NONE" />
-          <user value="" />
-          <deprecated-pwd value="" />
-        </database>
-        <properties>
-          <auto-commit value="false" />
-        </properties>
-        <ssh-settings>
-          <active value="false" />
-          <proxy-host value="" />
-          <proxy-port value="22" />
-          <proxy-user value="" />
-          <deprecated-proxy-pwd value="" />
-          <auth-type value="PASSWORD" />
-          <key-file value="" />
-          <key-passphrase value="" />
-        </ssh-settings>
-        <ssl-settings>
-          <active value="false" />
-          <certificate-authority-file value="" />
-          <client-certificate-file value="" />
-          <client-key-file value="" />
-        </ssl-settings>
-        <details>
-          <charset value="UTF-8" />
-          <session-management value="true" />
-          <ddl-file-binding value="true" />
-          <database-logging value="false" />
-          <connect-automatically value="true" />
-          <restore-workspace value="true" />
-          <restore-workspace-deep value="true" />
-          <environment-type value="default" />
-          <idle-time-to-disconnect value="30" />
-          <idle-time-to-disconnect-pool value="5" />
-          <credential-expiry-time value="10" />
-          <max-connection-pool-size value="7" />
-          <alternative-statement-delimiter value="" />
-        </details>
-        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false">
-          <object-type-filter use-master-settings="true">
-            <object-type name="SCHEMA" enabled="true" />
-            <object-type name="USER" enabled="true" />
-            <object-type name="ROLE" enabled="true" />
-            <object-type name="PRIVILEGE" enabled="true" />
-            <object-type name="CHARSET" enabled="true" />
-            <object-type name="TABLE" enabled="true" />
-            <object-type name="VIEW" enabled="true" />
-            <object-type name="MATERIALIZED_VIEW" enabled="true" />
-            <object-type name="NESTED_TABLE" enabled="true" />
-            <object-type name="COLUMN" enabled="true" />
-            <object-type name="INDEX" enabled="true" />
-            <object-type name="CONSTRAINT" enabled="true" />
-            <object-type name="DATASET_TRIGGER" enabled="true" />
-            <object-type name="DATABASE_TRIGGER" enabled="true" />
-            <object-type name="SYNONYM" enabled="true" />
-            <object-type name="SEQUENCE" enabled="true" />
-            <object-type name="PROCEDURE" enabled="true" />
-            <object-type name="FUNCTION" enabled="true" />
-            <object-type name="PACKAGE" enabled="true" />
-            <object-type name="TYPE" enabled="true" />
-            <object-type name="TYPE_ATTRIBUTE" enabled="true" />
-            <object-type name="ARGUMENT" enabled="true" />
-            <object-type name="DIMENSION" enabled="true" />
-            <object-type name="CLUSTER" enabled="true" />
-            <object-type name="DBLINK" enabled="true" />
-          </object-type-filter>
-          <object-name-filters />
-        </object-filters>
-      </connection>
-      <connection id="cb88d2fa-8002-45cf-a2a8-b4745b90904b" active="true">
-        <database>
-          <name value="Connection 2" />
-          <description value="" />
-          <database-type value="SQLITE" />
-          <config-type value="BASIC" />
-          <database-version value="3.3" />
-          <driver-source value="BUILTIN" />
-          <driver-library value="" />
-          <driver value="" />
-          <url-type value="FILE" />
-          <host value="localhost" />
-          <port value="1234" />
-          <database value="database" />
-          <files>
-            <file path="C:\Users\myles\Desktop\Python 学习\豆瓣电影250爬取\Spider top250 Project\temp\top250.db" schema="main" />
+            <file path="C:\Users\myles\Desktop\Python 学习\豆瓣电影250爬取\Spider top250 Project\temp\top250_9.db" schema="main" />
           </files>
           <type value="NONE" />
           <user value="" />
