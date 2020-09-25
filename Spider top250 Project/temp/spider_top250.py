@@ -36,7 +36,7 @@ def get_data_lst(html_doc, data_lst):
         # 电影概况
         general_info = item.find('p', class_='').get_text()
         # 电影评分
-        rate = item.find('span', class_="rating_num").get_text()
+        score = item.find('span', class_="rating_num").get_text()
         # 评价统计
         count = re.findall(r'<span>(\d+)\w+</span>', str(item))[0]
         # 一句话
@@ -46,7 +46,7 @@ def get_data_lst(html_doc, data_lst):
             desc = None
 
         # 列表收集数据
-        data = [movie_link, img_link, chinese_name, foreign_name, general_info, count, desc]
+        data = [movie_link, img_link, chinese_name, foreign_name, score, general_info, count, desc]
         data_lst.append(data)
 
     return data_lst
@@ -69,6 +69,7 @@ def save_data(db_path, data_lst):
         img_link CHAR(100),
         chinese_name CHAR(50),
         foreign_name CHAR(50),
+        score INT,
         general_info CHAR(200),
         count INT,
         desc CHAR(100)
@@ -80,11 +81,11 @@ def save_data(db_path, data_lst):
 
     # insert data
     for data in data_lst:
-        row = """{0},'{1}','{2}','{3}',"{4}","{5}",{6},"{7}" """.format(data_lst.index(data), data[0], data[1], data[2], data[3], data[4], data[5], data[6])
+        row = """{0},'{1}','{2}','{3}',"{4}",{5},"{6}",{7},"{8}" """.format(data_lst.index(data), data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7])
         print(row)
 
         sql_insert = """
-            INSERT INTO MOVIE (ID, movie_link, img_link, chinese_name, foreign_name, general_info, count, desc)
+            INSERT INTO MOVIE (ID, movie_link, img_link, chinese_name, foreign_name, score, general_info, count, desc)
             VALUES ({})""".format(row)
 
         # print(sql_insert)
@@ -103,33 +104,33 @@ def main():
             url = "https://movie.douban.com/top250?start={}".format(i*25)
             html_doc = get_html_doc(url)
             data_lst = get_data_lst(html_doc, data_lst)
-        save_data('./top250.db', data_lst)
+        save_data('./top250_9.db', data_lst)
 
 
-# main()
+main()
 
 
 
 
-
-# +++++++++++++++++++++ 数据查询实例 ++++++++++++++++++++
-# Create a db in RAM
-conn = sqlite3.connect('top250_8.db')
-print("Opened DataBase Successfully.")
-
-# Create a cursor
-cursor = conn.cursor()
-
-# Execute sql
-sql = """
-    select * from movie;
-    """
-
-rows_lst = cursor.execute(sql)
-
-
+#
+# # +++++++++++++++++++++ 数据查询实例 ++++++++++++++++++++
+# # Create a db in RAM
+# conn = sqlite3.connect('top250_8.db')
+# print("Opened DataBase Successfully.")
+#
+# # Create a cursor
+# cursor = conn.cursor()
+#
+# # Execute sql
+# sql = """
+#     select * from movie;
+#     """
+#
+# rows_lst = cursor.execute(sql)
+#
+#
+# # for row in rows_lst:
+# #     print("{0}\t|{1}\t|{2}\t|{3}\t|{4}\t|{5}\t|{6}\t|{7}\t".format(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]))
+#
 # for row in rows_lst:
-#     print("{0}\t|{1}\t|{2}\t|{3}\t|{4}\t|{5}\t|{6}\t|{7}\t".format(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]))
-
-for row in rows_lst:
-    print("{0}\t|{1}\t|{2}\t|{3}\t".format(row[0]+1, row[3], row[4], row[7]))
+#     print("{0}\t|{1}\t|{2}\t|{3}\t".format(row[0]+1, row[3], row[4], row[7]))
