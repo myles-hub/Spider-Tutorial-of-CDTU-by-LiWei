@@ -3,11 +3,14 @@ import sqlite3
 
 app = Flask(__name__)
 
+
 # 路由解析
 @app.route('/')
+@app.route('/index.html')
 def index():
     # 模板渲染
     return render_template('index.html')
+
 
 # /movie
 @app.route('/movie')
@@ -24,14 +27,17 @@ def movie():
     # 传入电影数据，并进行模板渲染
     return render_template('movie.html', movies=data_lst)
 
+
 # /score
 @app.route('/score')
 def score():
     return render_template('index.html')
 
+
 @app.route('/words')
 def words():
     return render_template('index.html')
+
 
 @app.route('/team')
 def team():
